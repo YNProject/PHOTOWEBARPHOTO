@@ -1,0 +1,5 @@
+# アップロードフォルダ内でのスクリプト実行を禁止
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|cgi|sh)$">
+    Deny from all
+</FilesMatch>
+Options -ExecCGI
