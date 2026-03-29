@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS comments (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
--- 初期管理者アカウント (パスワード: admin1234)
-INSERT INTO users (username, password_hash, role) VALUES
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+-- 初期管理者アカウントは手動で作成してください
+-- php -r "echo password_hash('任意のパスワード', PASSWORD_BCRYPT);"
+-- で生成したハッシュを使って以下を実行:
+-- INSERT INTO users (username, password_hash, role) VALUES ('admin', '生成したハッシュ', 'admin');
