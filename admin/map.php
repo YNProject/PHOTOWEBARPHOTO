@@ -1,3 +1,4 @@
+<?php require_once '../api/config.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -101,7 +102,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const GOOGLE_MAPS_API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'; // ★ Google Cloud Console で取得したAPIキーを入力
+const GOOGLE_MAPS_API_KEY = '<?= MAPS_API_KEY ?>';
 
 let map, infoWindow;
 let placeModeOn = false;

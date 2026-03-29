@@ -19,6 +19,7 @@ define('DB_USER', 'YOUR_DB_USER');        // 例: accountname_dbname
 define('DB_PASS', 'YOUR_DB_PASSWORD');
 define('DB_NAME', 'YOUR_DB_NAME');
 define('UPLOAD_URL', '/PHOTOWEBARPHOTO/uploads/');
+define('MAPS_API_KEY', 'YOUR_GOOGLE_MAPS_API_KEY'); // Google Cloud Console で取得
 
 // アップロード先（__DIR__ からの相対パスなので変更不要）
 define('UPLOAD_DIR', __DIR__ . '/../uploads/');

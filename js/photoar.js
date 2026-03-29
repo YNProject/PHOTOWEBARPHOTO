@@ -42,7 +42,7 @@ window.onload = () => {
     let currentUser = null; // { loggedIn, role, username } or null
 
     // --- 地図関連 ---
-    const MAPS_API_KEY = 'YOUR_GOOGLE_MAPS_API_KEY'; // ★ Google Cloud Console で取得したAPIキーを入力
+    // MAPS_API_KEY は index.php から window スコープで注入される
     let gMap = null, gMapReady = false, currentMarker = null;
     let savedPhotos = [];
 
