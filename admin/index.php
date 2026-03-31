@@ -42,7 +42,7 @@
         <div class="d-flex gap-2">
             <a class="nav-link" href="map.php"><i class="bi bi-map"></i> 地図</a>
             <a class="nav-link" id="usersLink" href="users.php" style="display:none"><i class="bi bi-people"></i> ユーザー</a>
-            <a class="nav-link" href="../index.html" title="ARアプリ"><i class="bi bi-phone"></i></a>
+            <a class="nav-link" href="../index.php" title="ARアプリ"><i class="bi bi-phone"></i></a>
             <a class="nav-link" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>

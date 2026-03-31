@@ -51,7 +51,7 @@
             </button>
             <a class="nav-link" href="index.php"><i class="bi bi-images"></i> 写真</a>
             <a class="nav-link" id="usersLink" href="users.php" style="display:none"><i class="bi bi-people"></i> ユーザー</a>
-            <a class="nav-link" href="../index.html" title="ARアプリ"><i class="bi bi-phone"></i></a>
+            <a class="nav-link" href="../index.php" title="ARアプリ"><i class="bi bi-phone"></i></a>
             <a class="nav-link" href="#" id="logoutBtn"><i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>

@@ -1,24 +1,29 @@
 // --- A-Frame カスタムコンポーネント: 近接時のサイズ制御 ---
 AFRAME.registerComponent('proximity-listener', {
     schema: {
-        shrinkRadius: { type: 'number', default: 3 }
+        shrinkRadius: { type: 'number', default: 3 },
+        showRadius:   { type: 'number', default: 30 },
+        lat:          { type: 'number', default: 0 },
+        lng:          { type: 'number', default: 0 }
     },
     init: function () {
-        this.cameraEl = document.querySelector('#myCamera');
         this.isShrunk = false;
+        this.el.setAttribute('visible', false); // GPS更新まで非表示
     },
     tick: function () {
+        if (!this.el.getAttribute('visible')) return;
+
+        // 近すぎる場合は縮小（Three.js距離で判定）
         const camPos = new THREE.Vector3();
-        const elPos = new THREE.Vector3();
-        this.cameraEl.object3D.getWorldPosition(camPos);
+        const elPos  = new THREE.Vector3();
+        document.querySelector('#myCamera').object3D.getWorldPosition(camPos);
         this.el.object3D.getWorldPosition(elPos);
+        const worldDist = camPos.distanceTo(elPos);
 
-        const dist = camPos.distanceTo(elPos);
-
-        if (dist < this.data.shrinkRadius && !this.isShrunk) {
+        if (worldDist < this.data.shrinkRadius && !this.isShrunk) {
             this.el.emit('shrink');
             this.isShrunk = true;
-        } else if (dist >= this.data.shrinkRadius && this.isShrunk) {
+        } else if (worldDist >= this.data.shrinkRadius && this.isShrunk) {
             this.el.emit('grow');
             this.isShrunk = false;
         }
@@ -79,16 +84,19 @@ window.onload = () => {
     navigator.geolocation.watchPosition(pos => {
         currentPos.lat = pos.coords.latitude;
         currentPos.lng = pos.coords.longitude;
+        window._currentPos = currentPos; // proximity-listener から参照
         const acc = Math.round(pos.coords.accuracy);
 
         const entities = document.querySelectorAll('[gps-entity-place]');
+        const SHOW_RADIUS = 30; // 表示する距離（メートル）
 
-        // 近くの写真をカウント
+        // 距離に応じて表示/非表示 & 近くの写真をカウント
         let nearbyCount = 0;
         entities.forEach(el => {
             const attr = el.getAttribute('gps-entity-place');
             const dist = getDistance(currentPos.lat, currentPos.lng, parseFloat(attr.latitude), parseFloat(attr.longitude));
-            if (dist < 15) nearbyCount++;
+            el.setAttribute('visible', dist <= SHOW_RADIUS);
+            if (dist <= SHOW_RADIUS) nearbyCount++;
         });
 
         let statusMsg = nearbyCount > 0
@@ -256,7 +264,7 @@ window.onload = () => {
 
         entity.setAttribute('animation__shrink', { property: 'scale', to: '0.3 0.3 0.3', dur: 300, easing: 'easeOutQuad', startEvents: 'shrink' });
         entity.setAttribute('animation__grow',   { property: 'scale', to: '1 1 1',         dur: 300, easing: 'easeOutQuad', startEvents: 'grow'   });
-        entity.setAttribute('proximity-listener', { shrinkRadius: 3 });
+        entity.setAttribute('proximity-listener', { shrinkRadius: 3, showRadius: 30, lat: data.lat, lng: data.lng });
 
         entity.appendChild(plane);
         scene.appendChild(entity);

@@ -41,7 +41,7 @@
         <div class="d-flex gap-2 align-items-center">
             <span class="text-secondary small" id="username-display"></span>
             <a class="nav-link" href="../admin/map.php" title="地図配置"><i class="bi bi-map"></i></a>
-            <a class="nav-link" href="../index.html" title="ARアプリ"><i class="bi bi-phone"></i></a>
+            <a class="nav-link" href="../index.php" title="ARアプリ"><i class="bi bi-phone"></i></a>
             <a class="nav-link" href="#" id="logoutBtn" title="ログアウト"><i class="bi bi-box-arrow-right"></i></a>
         </div>
     </div>
@@ -102,7 +102,7 @@ async function loadPhotos() {
             <div class="empty-state col-12">
                 <i class="bi bi-camera-fill"></i>
                 まだ写真がありません。<br>
-                <a href="../index.html" class="text-info mt-2 d-inline-block">ARアプリで撮影してみよう →</a>
+                <a href="../index.php" class="text-info mt-2 d-inline-block">ARアプリで撮影してみよう →</a>
             </div>`;
         return;
     }

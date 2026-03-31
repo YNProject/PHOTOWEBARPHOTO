@@ -38,7 +38,7 @@
         アカウントをお持ちでない方は <a href="register.php">新規登録</a>
     </div>
     <div class="back-link mt-2">
-        <a href="../index.html">← ARに戻る</a>
+        <a href="../index.php">← ARに戻る</a>
     </div>
 </div>
 <script>
